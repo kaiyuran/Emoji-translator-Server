@@ -176,8 +176,8 @@ def emojify(message):
     "summer": "🍉",
 }
 
-    message = message.replace('"', "")
-    message = message.replace("'", "")
+    message = message.strip('"')
+    message = message.strip("'")
     finalMessage = []
     print("message is:",message)
     message = message.split(" ")
