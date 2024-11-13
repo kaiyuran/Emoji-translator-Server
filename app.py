@@ -159,6 +159,7 @@ def emojify(message):
 
     # Donut
     "donut": "🍩",
+    "donuts": "🍩",
     "glazed": "🍩",
     "glaze": "🍩",
     "sprinkles": "🍩",
@@ -183,7 +184,13 @@ def emojify(message):
     message = message.split(" ")
     for word in message:
         try:
-            finalMessage.append(word + " " + choiceWordDict[word.lower()])
+            formWord = word.lower()
+            if formWord[-1] == ".":
+                finalMessage.append(word[:-1]  + choiceWordDict[formWord[:-1]]+".")
+            else:
+                finalMessage.append(word  + choiceWordDict[word.lower()])
+
+            
             # print("Emojified word is:",word)
         except:
             finalMessage.append(word)
@@ -200,23 +207,20 @@ def emojify(message):
 
 app = Flask(__name__)
 
-# Define a list of emojis to randomly select from
-emojiList = ['😊', '😂', '❤️', '🥰', '😍', '🤔', '😁', '👍', '😎', '🎉', '🔥', '💯', '🌟', '🎈', '✨']
 
 @app.route('/getemoji', methods=['GET'])
 def get_random_emoji():
     # Get the 'letter' parameter from the URL
     message = request.args.get('message')
     print(message)
-    # random_emoji = random.choice(emojiList)
-    # Return the emoji in JSON format
+
+    
     final = emojify(message)
     print(final)
-    final = jsonify({final: 1})
-    # print(final)
+    final = jsonify({"message": final})# emoji in JSON format
+    # final = jsonify({final: 1})# emoji in JSON format
+
     return final
-    # print(type({emojiList[1]: 1}))
-    # return jsonify({emojiList[1]: 1})
 
 if __name__ == '__main__':
     app.run(debug=True)
