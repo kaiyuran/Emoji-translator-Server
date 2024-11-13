@@ -186,18 +186,17 @@ def emojify(message):
         try:
             formWord = word.lower()
             if formWord[-1] == ".":
-                finalMessage.append(word[:-1]  + choiceWordDict[formWord[:-1]]+".")
+                finalMessage.append(word[:-1]  + (choiceWordDict[formWord[:-1]] * random.randint(1,3)) +".")
             else:
                 finalMessage.append(word  + choiceWordDict[word.lower()])
 
             
-            # print("Emojified word is:",word)
+
         except:
             finalMessage.append(word)
             pass
     print(finalMessage)
     final =" ".join([str(item) for item in finalMessage])
-    # print(final)
     return final
 
 
@@ -216,7 +215,7 @@ def get_random_emoji():
 
     
     final = emojify(message)
-    print(final)
+    # print(final)
     final = jsonify({"message": final})# emoji in JSON format
     # final = jsonify({final: 1})# emoji in JSON format
 
