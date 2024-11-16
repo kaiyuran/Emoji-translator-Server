@@ -207,6 +207,9 @@ def emojify(message):
 app = Flask(__name__)
 CORS(app) 
 
+if __name__ == "__main__":
+    app.run(port=5500)  
+
 @app.route('/getemoji', methods=['GET'])
 # @cross_origin()
 def get_random_emoji():
