@@ -203,11 +203,8 @@ def emojify(message):
 app = Flask(__name__)
 CORS(app) 
 
-if __name__ == "__main__":
-    app.run(port=5000)  
-
 # if __name__ == "__main__":
-#     app.run(host='0.0.0.0', port=5501)
+#     app.run(port=5500)  
 
 @app.route('/getemoji', methods=['GET'])
 # @cross_origin()
