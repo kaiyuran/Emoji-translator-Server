@@ -1,4 +1,5 @@
 from flask import Flask, request, jsonify
+from flask_cors import CORS
 import random
 
 def emojify(message):
@@ -204,7 +205,7 @@ def emojify(message):
 
 
 app = Flask(__name__)
-
+CORS(app) 
 
 @app.route('/getemoji', methods=['GET'])
 def get_random_emoji():
