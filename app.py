@@ -5,6 +5,12 @@ import random
 def emojify(message):
 
     choiceWordDict = {
+    "hello": "👋",
+    "hi": "👋",
+    "hey": "👋",
+    "greetings": "👋",
+    "goodbye": "👋",
+
     #happy face
     "happy": "😊",
     "joy": "😊",
@@ -253,8 +259,36 @@ def emojify(message):
     "sunflower": "🌻",
     "daisy": "🌼",
     "hibiscus": "🌺",
+    "work": "🏢",
+    "office": "🏢",
+    "building": "🏢",
+    "construction": "🏗️",
+    "site": "🏗️",
+    "school": "🏫",
+    "university": "🏫",
+    "college": "🏫",
+    "hospital": "🏥",
+    "clinic": "🏥",
+    "doctor": "👩‍⚕️",
+    "nurse": "👩‍⚕️",
+    "therapist": "👩‍⚕️",
+    "healthcare": "👩‍⚕️",
+    "police": "👮",
+    "cop": "👮",
+    "law": "👮",
+    "enforcement": "👮",
+    "officer": "👮",
+    "movie": "🎥",
+    "film": "🎥",
+    "camera": "🎥",
+    "movies": "🎥",
+    "cinema": "🎥",
+    "theater": "🎭",
+    "drama": "🎭",
+    "acting": "🎭",
+    "perform": "🎭",
 }
-
+    puncList = [".",",","!","?",";"]
     message = message.strip('"')
     message = message.strip("'")
     finalMessage = []
@@ -263,9 +297,12 @@ def emojify(message):
     for word in message:
         try:
             formWord = word.lower()
-            if formWord[-1] == ".":
-                finalMessage.append(word[:-1]  + (choiceWordDict[formWord[:-1]] * random.randint(1,3)) +".")
-            else:
+            done = False
+            for punctuation in puncList:
+                if formWord[-1] == punctuation:
+                    finalMessage.append(word[:-1]  + (choiceWordDict[formWord[:-1]] * random.randint(1,3)) +punctuation)
+                    done = True
+            if not done:
                 finalMessage.append(word  + choiceWordDict[word.lower()])
 
             
@@ -303,5 +340,5 @@ def get_random_emoji():
 
 if __name__ == '__main__':
     #app.run(debug=True)
-    app.run(port=33303)
-    # app.run(host='0.0.0.0', port=33303)
+    # app.run(port=33303)
+    app.run(host='0.0.0.0', port=33303)
