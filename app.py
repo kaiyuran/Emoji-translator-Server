@@ -175,6 +175,39 @@ def emojify(message):
     "fruit": "🍉",
     "refreshing": "🍉",
     "summer": "🍉",
+
+
+
+    "eggplant": "🍆",
+    "aubergine": "🍆",
+    "banana": "🍌",
+    "peach": "🍑",
+    "cherries": "🍒",
+    "strawberry": "🍓",
+    "tomato": "🍅",
+    "avocado": "🥑",
+    "broccoli": "🥦",
+    "carrot": "🥕",
+    "corn": "🌽",
+    "cucumber": "🥒",
+    "lettuce": "🥬",
+    "mushroom": "🍄",
+    "pepper": "🌶️",
+    "hotpepper": "🌶️",
+    "potato": "🥔",
+    "sweetpotato": "🍠",
+    "croissant": "🥐",
+    "baguette": "🥖",
+    "pretzel": "🥨",
+    "cheese": "🧀",
+    "egg": "🥚",
+    "bacon": "🥓",
+    "pancakes": "🥞",
+    "poultryleg": "🍗",
+    "chicken": "🍗",
+    "meat": "🍖",
+    "bacon": "🥓",
+
 }
 
     message = message.strip('"')
@@ -201,19 +234,21 @@ def emojify(message):
 
 
 
-
-
-
 app = Flask(__name__)
-CORS(app) 
+CORS(app)
+
+#if __name__ == "__main__":
+#    app.run(host='0.0.0.0', port=33303)
+
 
 @app.route('/getemoji', methods=['GET'])
+# @cross_origin()
 def get_random_emoji():
     # Get the 'letter' parameter from the URL
     message = request.args.get('message')
     print(message)
 
-    
+
     final = emojify(message)
     # print(final)
     final = jsonify({"message": final})# emoji in JSON format
@@ -222,4 +257,6 @@ def get_random_emoji():
     return final
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    #app.run(debug=True)
+    app.run(port=33303)
+    # app.run(host='0.0.0.0', port=33303)
