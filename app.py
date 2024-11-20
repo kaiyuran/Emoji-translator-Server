@@ -288,7 +288,7 @@ def emojify(message):
     "acting": "🎭",
     "perform": "🎭",
 }
-    puncList = [".",",","!","?",";"]
+    puncList = [".",",","!","?",";", "'", '"', ":"]
     message = message.strip('"')
     message = message.strip("'")
     finalMessage = []
